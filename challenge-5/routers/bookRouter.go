@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"tgs2-sesi-2/controllers"
+	"challenge-5/controllers"
 
 	"github.com/gin-gonic/gin"
 )
