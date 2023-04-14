@@ -1,10 +1,10 @@
 package controllers
 
 import (
+	"errors"
 	"final-project/database"
 	"final-project/helpers"
 	"final-project/models"
-	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -36,10 +36,10 @@ func UserRegister(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"id":        User.ID,
-		"email":     User.Email,
-		"full_name": User.FullName,
-		"role":      User.Role,
+		"id":       User.ID,
+		"email":    User.Email,
+		"password": User.Password,
+		"age":      User.Age,
 	})
 
 }
@@ -109,10 +109,10 @@ func CreateUser(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusCreated, gin.H{
-		"id":        User.ID,
-		"email":     User.Email,
-		"full_name": User.FullName,
-		"role":      User.Role,
+		"id":       User.ID,
+		"email":    User.Email,
+		"password": User.Password,
+		"age":      User.Age,
 	})
 }
 
@@ -132,7 +132,7 @@ func UpdateUser(ctx *gin.Context) {
 
 	user := models.User{}
 
-	err := db.Model(&user).Where("id = ?", userID).Updates(models.User{Email: updatedUser.Email, FullName: updatedUser.FullName, Role: updatedUser.Role}).Error
+	err := db.Model(&user).Where("id = ?", userID).Updates(models.User{Username: updatedUser.Username, Email: updatedUser.Email, Password: updatedUser.Password, Age: updatedUser.Age}).Error
 
 	if err != nil {
 		fmt.Println("Error updating User data:", err)

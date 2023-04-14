@@ -14,7 +14,7 @@ var (
 	user     = "postgres"
 	password = "admin"
 	dbPort   = "5432"
-	dbname   = "simple-api"
+	dbname   = "final-project-dts"
 	db       *gorm.DB
 	err      error
 )
@@ -29,7 +29,7 @@ func StartDB() {
 	}
 
 	fmt.Println("sukses koneksi ke database :", err)
-	db.Debug().AutoMigrate(models.User{}, models.Product{})
+	db.Debug().AutoMigrate(models.User{}, models.Photo{}, models.Comment{}, models.Socialmedia{})
 }
 
 func GetDB() *gorm.DB {

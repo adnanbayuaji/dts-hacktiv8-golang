@@ -1,10 +1,10 @@
 package controllers
 
 import (
+	"errors"
 	"final-project/database"
 	"final-project/helpers"
 	"final-project/models"
-	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -65,7 +65,7 @@ func UpdateSocialmedia(c *gin.Context) {
 	Socialmedia.UserID = userID
 	Socialmedia.ID = uint(socialmediaId)
 
-	err := db.Model(&Socialmedia).Where("id = ?", socialmediaId).Updates(models.Socialmedia{Title: Socialmedia.Title, Description: Socialmedia.Description}).Error
+	err := db.Model(&Socialmedia).Where("id = ?", socialmediaId).Updates(models.Socialmedia{Name: Socialmedia.Name, SocialMediaUrl: Socialmedia.SocialMediaUrl}).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err":     "Bad Request",

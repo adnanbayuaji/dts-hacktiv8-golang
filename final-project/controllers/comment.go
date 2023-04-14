@@ -1,10 +1,10 @@
 package controllers
 
 import (
+	"errors"
 	"final-project/database"
 	"final-project/helpers"
 	"final-project/models"
-	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -12,10 +12,6 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-)
-
-var (
-	appJSON = "application/json"
 )
 
 func CreateComment(c *gin.Context) {
@@ -65,7 +61,7 @@ func UpdateComment(c *gin.Context) {
 	Comment.UserID = userID
 	Comment.ID = uint(commentId)
 
-	err := db.Model(&Comment).Where("id = ?", commentId).Updates(models.Comment{Title: Comment.Title, Description: Comment.Description}).Error
+	err := db.Model(&Comment).Where("id = ?", commentId).Updates(models.Comment{Message: Comment.Message}).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err":     "Bad Request",
