@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"challenge-10/models"
+	"final-project/models"
 
 	"github.com/stretchr/testify/mock"
 )

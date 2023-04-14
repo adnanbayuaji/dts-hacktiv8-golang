@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"challenge-10/database"
-	"challenge-10/models"
+	"final-project/database"
+	"final-project/models"
 	"net/http"
 	"strconv"
 

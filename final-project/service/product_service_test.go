@@ -3,8 +3,8 @@ package service
 import (
 	"testing"
 
-	"challenge-10/models"
-	"challenge-10/repository"
+	"final-project/models"
+	"final-project/repository"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

@@ -1,8 +1,8 @@
 package router
 
 import (
-	"challenge-10/controllers"
-	"challenge-10/middlewares"
+	"final-project/controllers"
+	"final-project/middlewares"
 
 	"github.com/gin-gonic/gin"
 )

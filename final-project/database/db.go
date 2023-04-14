@@ -1,7 +1,7 @@
 package database
 
 import (
-	"challenge-10/models"
+	"final-project/models"
 	"fmt"
 	"log"
 

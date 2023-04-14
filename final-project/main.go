@@ -1,8 +1,8 @@
 package main
 
 import (
-	"challenge-10/database"
-	"challenge-10/router"
+	"final-project/database"
+	"final-project/router"
 )
 
 func main() {

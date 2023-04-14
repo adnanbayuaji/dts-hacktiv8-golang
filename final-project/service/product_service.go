@@ -3,8 +3,8 @@ package service
 import (
 	"errors"
 
-	"challenge-10/models"
-	"challenge-10/repository"
+	"final-project/models"
+	"final-project/repository"
 )
 
 type ProductService struct {

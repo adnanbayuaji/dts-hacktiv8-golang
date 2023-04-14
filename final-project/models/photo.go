@@ -1,7 +1,7 @@
 package models
 
 import (
-	"challenge-10/helpers"
+	"final-project/helpers"
 
 	"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"

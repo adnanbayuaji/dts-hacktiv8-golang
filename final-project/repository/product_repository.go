@@ -1,6 +1,6 @@
 package repository
 
-import "challenge-10/models"
+import "final-project/models"
 
 type ProductRepository interface {
 	FindById(id string) *models.Product

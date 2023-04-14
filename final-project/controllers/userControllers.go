@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"challenge-10/database"
-	"challenge-10/helpers"
-	"challenge-10/models"
+	"final-project/database"
+	"final-project/helpers"
+	"final-project/models"
 	"errors"
 	"fmt"
 	"net/http"

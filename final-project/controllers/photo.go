@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"challenge-10/database"
-	"challenge-10/helpers"
-	"challenge-10/models"
+	"final-project/database"
+	"final-project/helpers"
+	"final-project/models"
 	"errors"
 	"fmt"
 	"net/http"
@@ -18,23 +18,23 @@ var (
 	appJSON = "application/json"
 )
 
-func CreateSocialmedia(c *gin.Context) {
+func CreatePhoto(c *gin.Context) {
 	db := database.GetDB()
 	userData := c.MustGet("userData").(jwt.MapClaims)
 	contentType := helpers.GetContentType(c)
 
-	Socialmedia := models.Socialmedia{}
+	Photo := models.Photo{}
 	userID := uint(userData["id"].(float64))
 
 	if contentType == appJSON {
-		c.ShouldBindJSON(&Socialmedia)
+		c.ShouldBindJSON(&Photo)
 	} else {
-		c.ShouldBind(&Socialmedia)
+		c.ShouldBind(&Photo)
 	}
 
-	Socialmedia.UserID = userID
+	Photo.UserID = userID
 
-	err := db.Debug().Create(&Socialmedia).Error
+	err := db.Debug().Create(&Photo).Error
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -44,28 +44,28 @@ func CreateSocialmedia(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, Socialmedia)
+	c.JSON(http.StatusCreated, Photo)
 }
 
-func UpdateSocialmedia(c *gin.Context) {
+func UpdatePhoto(c *gin.Context) {
 	db := database.GetDB()
 	userData := c.MustGet("userData").(jwt.MapClaims)
 	contentType := helpers.GetContentType(c)
-	Socialmedia := models.Socialmedia{}
+	Photo := models.Photo{}
 
-	socialmediaId, _ := strconv.Atoi(c.Param("socialmediaId"))
+	photoId, _ := strconv.Atoi(c.Param("photoId"))
 	userID := uint(userData["id"].(float64))
 
 	if contentType == appJSON {
-		c.ShouldBindJSON(&Socialmedia)
+		c.ShouldBindJSON(&Photo)
 	} else {
-		c.ShouldBind(&Socialmedia)
+		c.ShouldBind(&Photo)
 	}
 
-	Socialmedia.UserID = userID
-	Socialmedia.ID = uint(socialmediaId)
+	Photo.UserID = userID
+	Photo.ID = uint(photoId)
 
-	err := db.Model(&Socialmedia).Where("id = ?", socialmediaId).Updates(models.Socialmedia{Title: Socialmedia.Title, Description: Socialmedia.Description}).Error
+	err := db.Model(&Photo).Where("id = ?", photoId).Updates(models.Photo{Title: Photo.Title, Description: Photo.Description}).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err":     "Bad Request",
@@ -73,15 +73,15 @@ func UpdateSocialmedia(c *gin.Context) {
 		})
 		return
 	}
-	c.JSON(http.StatusOK, Socialmedia)
+	c.JSON(http.StatusOK, Photo)
 }
 
-func GetAllSocialmedia(ctx *gin.Context) {
+func GetAllPhoto(ctx *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(ctx)
 	_, _ = db, contentType
-	socialmedias := []models.Socialmedia{}
-	err := db.Find(&socialmedias).Error
+	photos := []models.Photo{}
+	err := db.Find(&photos).Error
 
 	if err != nil {
 		fmt.Println("Error getting user datas:", err)
@@ -89,18 +89,18 @@ func GetAllSocialmedia(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"socialmedia": socialmedias,
+		"photo": photos,
 	})
 }
 
-func GetOneSocialmedia(ctx *gin.Context) {
-	socialmediaID, _ := strconv.Atoi(ctx.Param("socialmediaId"))
+func GetOnePhoto(ctx *gin.Context) {
+	photoID, _ := strconv.Atoi(ctx.Param("photoId"))
 
 	db := database.GetDB()
 	contentType := helpers.GetContentType(ctx)
 	_, _ = db, contentType
-	socialmedia := models.Socialmedia{}
-	err := db.First(&socialmedia, "id = ?", socialmediaID).Error
+	photo := models.Photo{}
+	err := db.First(&photo, "id = ?", photoID).Error
 
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -111,6 +111,6 @@ func GetOneSocialmedia(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"socialmedia": socialmedia,
+		"photo": photo,
 	})
 }

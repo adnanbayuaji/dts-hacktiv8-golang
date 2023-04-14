@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"challenge-10/helpers"
+	"final-project/helpers"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

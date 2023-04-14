@@ -1,4 +1,4 @@
-module challenge-10
+module final-project
 
 go 1.20
 
