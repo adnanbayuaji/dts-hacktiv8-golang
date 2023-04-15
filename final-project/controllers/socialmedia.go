@@ -18,6 +18,15 @@ var (
 	appJSON = "application/json"
 )
 
+// CreateSocialmedia godoc
+// @Summary Post details for a given Id
+// @Description Post details of Socialmedia corresponding to the input Id
+// @Tags socialmedias
+// @Accept json
+// @Produce json
+// @Param models.Socialmedia body models.Socialmedia true "create socialmedia"
+// @Success 200 {object} models.Socialmedia
+// @Router /socialmedias [post]
 func CreateSocialmedia(c *gin.Context) {
 	db := database.GetDB()
 	userData := c.MustGet("userData").(jwt.MapClaims)
@@ -47,6 +56,15 @@ func CreateSocialmedia(c *gin.Context) {
 	c.JSON(http.StatusCreated, Socialmedia)
 }
 
+// UpdateSocialmedia godoc
+// @Summary Update Socialmedia identified by the given Id
+// @Description Update the Socialmedia corresponding to the input
+// @Tags socialmedias
+// @Accept json
+// @Produce json
+// @Param Id path int true "ID of the socialmedia to be updated"
+// @Success 200 {object} models.Socialmedia
+// @Router /socialmedias/{id} [patch]
 func UpdateSocialmedia(c *gin.Context) {
 	db := database.GetDB()
 	userData := c.MustGet("userData").(jwt.MapClaims)
@@ -76,6 +94,14 @@ func UpdateSocialmedia(c *gin.Context) {
 	c.JSON(http.StatusOK, Socialmedia)
 }
 
+// GetAllSocialmedia godoc
+// @Summary Get details
+// @Description Get details of all Socialmedia
+// @Tags socialmedias
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.Socialmedia
+// @Router /socialmedias [get]
 func GetAllSocialmedia(ctx *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(ctx)
@@ -93,6 +119,15 @@ func GetAllSocialmedia(ctx *gin.Context) {
 	})
 }
 
+// GetOneSocialmedia godoc
+// @Summary Get details for a given Id
+// @Description Get details of Socialmedia corresponding to the input Id
+// @Tags socialmedias
+// @Accept json
+// @Produce json
+// @Param Id path int true "ID of the socialmedia"
+// @Success 200 {object} models.Socialmedia
+// @Router /socialmedias [get]
 func GetOneSocialmedia(ctx *gin.Context) {
 	socialmediaID, _ := strconv.Atoi(ctx.Param("socialmediaId"))
 
@@ -115,6 +150,15 @@ func GetOneSocialmedia(ctx *gin.Context) {
 	})
 }
 
+// DeleteSocialmedia godoc
+// @Summary Delete socialmedia identified by the given Id
+// @Description Delete the Socialmedia corresponding to the input
+// @Tags socialmedias
+// @Accept json
+// @Produce json
+// @Param Id path int true "ID of the socialmedia to be deleted"
+// @Success 204 "No Content"
+// @Router /socialmedias/{id} [delete]
 func DeleteSocialmedia(ctx *gin.Context) {
 	socialmediaId, _ := strconv.Atoi(ctx.Param("socialmediaId"))
 

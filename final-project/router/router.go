@@ -5,8 +5,23 @@ import (
 	"final-project/middlewares"
 
 	"github.com/gin-gonic/gin"
+
+	_ "gin-api/docs"
+
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @title API
+// @version 1.0
+// @description This is a sample service for managing data
+// @termOfService http://swagger.io/terms
+// @contact.name API Support
+// @contact.email soberkoder@swagger.io
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host localhost:8080
+// @BasePath /
 func StartApp() *gin.Engine {
 	r := gin.Default()
 
@@ -46,6 +61,8 @@ func StartApp() *gin.Engine {
 		commentRouter.PUT("/:commentId/:photoId", middlewares.CommentAuthorization(), controllers.UpdateComment)
 		commentRouter.DELETE("/:commentId", middlewares.CommentAuthorization(), controllers.DeleteComment)
 	}
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	return r
 }

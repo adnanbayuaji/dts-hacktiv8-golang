@@ -5,6 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Comment represents the model for an comment
 type Comment struct {
 	GormModel
 	Message string `json:"message" form:"message" valid:"required~Message is required"`

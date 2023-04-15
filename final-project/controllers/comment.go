@@ -14,6 +14,15 @@ import (
 	"gorm.io/gorm"
 )
 
+// CreateComment godoc
+// @Summary Post details for a given Id
+// @Description Post details of Comment corresponding to the input Id
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Param models.Comment body models.Comment true "create comment"
+// @Success 200 {object} models.Comment
+// @Router /comments/{photoId} [post]
 func CreateComment(c *gin.Context) {
 	db := database.GetDB()
 	userData := c.MustGet("userData").(jwt.MapClaims)
@@ -45,6 +54,15 @@ func CreateComment(c *gin.Context) {
 	c.JSON(http.StatusCreated, Comment)
 }
 
+// UpdateComment godoc
+// @Summary Update Comment identified by the given Id
+// @Description Update the Comment corresponding to the input
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Param Id path int true "ID of the comment to be updated"
+// @Success 200 {object} models.Comment
+// @Router /comments/{id}/{photoId} [patch]
 func UpdateComment(c *gin.Context) {
 	db := database.GetDB()
 	userData := c.MustGet("userData").(jwt.MapClaims)
@@ -76,6 +94,14 @@ func UpdateComment(c *gin.Context) {
 	c.JSON(http.StatusOK, Comment)
 }
 
+// GetAllComment godoc
+// @Summary Get details
+// @Description Get details of all Comment
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.Comment
+// @Router /comments [get]
 func GetAllComment(ctx *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(ctx)
@@ -93,6 +119,15 @@ func GetAllComment(ctx *gin.Context) {
 	})
 }
 
+// GetOneComment godoc
+// @Summary Get details for a given Id
+// @Description Get details of Comment corresponding to the input Id
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Param Id path int true "ID of the comment"
+// @Success 200 {object} models.Comment
+// @Router /comments [get]
 func GetOneComment(ctx *gin.Context) {
 	commentID, _ := strconv.Atoi(ctx.Param("commentId"))
 
@@ -115,6 +150,15 @@ func GetOneComment(ctx *gin.Context) {
 	})
 }
 
+// DeleteComment godoc
+// @Summary Delete comment identified by the given Id
+// @Description Delete the Comment corresponding to the input
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Param Id path int true "ID of the comment to be deleted"
+// @Success 204 "No Content"
+// @Router /comments/{id} [delete]
 func DeleteComment(ctx *gin.Context) {
 	commentId, _ := strconv.Atoi(ctx.Param("commentId"))
 
