@@ -1,0 +1,557 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample service for managing data",
+        "title": "API",
+        "contact": {
+            "name": "API Support",
+            "email": "soberkoder@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/comments": {
+            "get": {
+                "description": "Get details of Comment corresponding to the input Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Get details for a given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the comment",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Comment"
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/{id}": {
+            "delete": {
+                "description": "Delete the Comment corresponding to the input",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Delete comment identified by the given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the comment to be deleted",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/comments/{id}/{photoId}": {
+            "patch": {
+                "description": "Update the Comment corresponding to the input",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Update Comment identified by the given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the comment to be updated",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Comment"
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/{photoId}": {
+            "post": {
+                "description": "Post details of Comment corresponding to the input Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Post details for a given Id",
+                "parameters": [
+                    {
+                        "description": "create comment",
+                        "name": "models.Comment",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Comment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Comment"
+                        }
+                    }
+                }
+            }
+        },
+        "/photos": {
+            "get": {
+                "description": "Get details of Photo corresponding to the input Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "photos"
+                ],
+                "summary": "Get details for a given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the photo",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Photo"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Post details of Photo corresponding to the input Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "photos"
+                ],
+                "summary": "Post details for a given Id",
+                "parameters": [
+                    {
+                        "description": "create photo",
+                        "name": "models.Photo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Photo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Photo"
+                        }
+                    }
+                }
+            }
+        },
+        "/photos/{id}": {
+            "delete": {
+                "description": "Delete the Photo corresponding to the input",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "photos"
+                ],
+                "summary": "Delete photo identified by the given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the photo to be deleted",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update the Photo corresponding to the input",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "photos"
+                ],
+                "summary": "Update Photo identified by the given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the photo to be updated",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Photo"
+                        }
+                    }
+                }
+            }
+        },
+        "/socialmedias": {
+            "get": {
+                "description": "Get details of Socialmedia corresponding to the input Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "socialmedias"
+                ],
+                "summary": "Get details for a given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the socialmedia",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Socialmedia"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Post details of Socialmedia corresponding to the input Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "socialmedias"
+                ],
+                "summary": "Post details for a given Id",
+                "parameters": [
+                    {
+                        "description": "create socialmedia",
+                        "name": "models.Socialmedia",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Socialmedia"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Socialmedia"
+                        }
+                    }
+                }
+            }
+        },
+        "/socialmedias/{id}": {
+            "delete": {
+                "description": "Delete the Socialmedia corresponding to the input",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "socialmedias"
+                ],
+                "summary": "Delete socialmedia identified by the given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the socialmedia to be deleted",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update the Socialmedia corresponding to the input",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "socialmedias"
+                ],
+                "summary": "Update Socialmedia identified by the given Id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the socialmedia to be updated",
+                        "name": "Id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Socialmedia"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "description": "Login user for authentication",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "login user",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/register": {
+            "post": {
+                "description": "Register user for login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "register user",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Comment": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "photo": {
+                    "$ref": "#/definitions/models.Photo"
+                },
+                "photoID": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user": {
+                    "$ref": "#/definitions/models.User"
+                },
+                "userID": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Photo": {
+            "type": "object",
+            "properties": {
+                "caption": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "photourl": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user": {
+                    "$ref": "#/definitions/models.User"
+                },
+                "userID": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Socialmedia": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "socialmediaurl": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user": {
+                    "$ref": "#/definitions/models.User"
+                },
+                "userID": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.User": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "photos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Photo"
+                    }
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

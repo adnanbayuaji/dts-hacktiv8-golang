@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	_ "gin-api/docs"
+	_ "final-project/docs"
 
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"

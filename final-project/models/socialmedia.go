@@ -5,6 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Socialmedia represents the model for an socialmedia
 type Socialmedia struct {
 	GormModel
 	Name           string `gorm:"not null" json:"name" form:"name" valid:"required~Your username is required"`
