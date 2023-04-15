@@ -114,3 +114,21 @@ func GetOneSocialmedia(ctx *gin.Context) {
 		"socialmedia": socialmedia,
 	})
 }
+
+func DeleteSocialmedia(ctx *gin.Context) {
+	socialmediaId, _ := strconv.Atoi(ctx.Param("socialmediaId"))
+
+	db := database.GetDB()
+	contentType := helpers.GetContentType(ctx)
+	_, _ = db, contentType
+	Socialmedia := models.Socialmedia{}
+	err := db.Where("id = ?", socialmediaId).Delete(&Socialmedia).Error
+	if err != nil {
+		fmt.Println("Error deleting product:", err.Error())
+		return
+	}
+
+	fmt.Printf("Socialmedia with id %d has been successfully deleted", socialmediaId)
+
+	ctx.JSON(http.StatusOK, "Deleted")
+}

@@ -110,3 +110,21 @@ func GetOnePhoto(ctx *gin.Context) {
 		"photo": photo,
 	})
 }
+
+func DeletePhoto(ctx *gin.Context) {
+	photoId, _ := strconv.Atoi(ctx.Param("photoId"))
+
+	db := database.GetDB()
+	contentType := helpers.GetContentType(ctx)
+	_, _ = db, contentType
+	Photo := models.Photo{}
+	err := db.Where("id = ?", photoId).Delete(&Photo).Error
+	if err != nil {
+		fmt.Println("Error deleting product:", err.Error())
+		return
+	}
+
+	fmt.Printf("Photo with id %d has been successfully deleted", photoId)
+
+	ctx.JSON(http.StatusOK, "Deleted")
+}

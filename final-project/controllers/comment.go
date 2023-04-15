@@ -29,6 +29,8 @@ func CreateComment(c *gin.Context) {
 	}
 
 	Comment.UserID = userID
+	photoId, _ := strconv.Atoi(c.Param("photoId"))
+	Comment.PhotoID = uint(photoId)
 
 	err := db.Debug().Create(&Comment).Error
 
@@ -60,6 +62,8 @@ func UpdateComment(c *gin.Context) {
 
 	Comment.UserID = userID
 	Comment.ID = uint(commentId)
+	photoId, _ := strconv.Atoi(c.Param("photoId"))
+	Comment.PhotoID = uint(photoId)
 
 	err := db.Model(&Comment).Where("id = ?", commentId).Updates(models.Comment{Message: Comment.Message}).Error
 	if err != nil {
@@ -109,4 +113,22 @@ func GetOneComment(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"comment": comment,
 	})
+}
+
+func DeleteComment(ctx *gin.Context) {
+	commentId, _ := strconv.Atoi(ctx.Param("commentId"))
+
+	db := database.GetDB()
+	contentType := helpers.GetContentType(ctx)
+	_, _ = db, contentType
+	Comment := models.Comment{}
+	err := db.Where("id = ?", commentId).Delete(&Comment).Error
+	if err != nil {
+		fmt.Println("Error deleting product:", err.Error())
+		return
+	}
+
+	fmt.Printf("Comment with id %d has been successfully deleted", commentId)
+
+	ctx.JSON(http.StatusOK, "Deleted")
 }
